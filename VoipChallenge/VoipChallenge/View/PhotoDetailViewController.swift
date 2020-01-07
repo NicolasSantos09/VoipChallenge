@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PhotoDetailViewController.swift
 //  VoipChallenge
 //
 //  Created by Nicolas de Andrade dos Santos on 07/01/20.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PhotoDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = .gray
     }
 
-
 }
-
