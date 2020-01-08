@@ -64,7 +64,10 @@ class PhotosManager: NSObject {
         }
     }
     
-    private func save(this image: UIImage, on objectCore: NSManagedObject){
+    /**
+    Use this method to update the thumbnailImage of element on PhotosCore.
+     */
+    private func update(this objectCore: NSManagedObject, withThumbnail image: UIImage){
         
         guard let imageData = image.pngData() else { return }
         
@@ -137,7 +140,7 @@ class PhotosManager: NSObject {
             }
             if let image = UIImage(data: data) {
                 
-                self.save(this: image, on: objectCore)
+                self.update(this: objectCore, withThumbnail: image)
                 
             }
         }

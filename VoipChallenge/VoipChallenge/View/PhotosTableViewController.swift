@@ -64,7 +64,7 @@ extension PhotosTableViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let viewController = PhotoDetailViewController()
-//        viewController.value = "meu texto blablalba"
+        viewController.objectCore = self.photoManager.photos[indexPath.row]
         
         
         self.navigationController?.pushViewController(viewController, animated: true)
