@@ -13,16 +13,16 @@ class Photo: NSObject, Decodable{
     let id: Int
     let albumId: Int
     let title: String
-//    let url: URL?
-//    let thumbnailUrl: URL?
+    let url: URL?
+    let thumbnailUrl: URL?
     
-    init(id: Int, albumId: Int, title: String/*, url: URL?, thumbnailUrl: URL?*/) {
+    init(id: Int, albumId: Int, title: String, url: URL?, thumbnailUrl: URL?) {
         
         self.id = id
         self.albumId = albumId
         self.title = title
-//        self.url = url
-//        self.thumbnailUrl = thumbnailUrl
+       self.url = url
+        self.thumbnailUrl = thumbnailUrl
         
     }
     

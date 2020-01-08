@@ -11,7 +11,7 @@ import CoreData
 
 class PhotoDetailViewController: UIViewController {
     
-    var objectCore = NSManagedObject()
+    var objectCore: NSManagedObject?
     let imageView = UIImageView()
 
     override func viewDidLoad() {
@@ -20,7 +20,9 @@ class PhotoDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .gray
         
-        self.fetchImage(of: objectCore)
+        if objectCore != nil {
+            self.fetchImage(of: objectCore!)
+        }
         
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false

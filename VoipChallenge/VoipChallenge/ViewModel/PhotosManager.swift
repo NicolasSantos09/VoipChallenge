@@ -15,7 +15,23 @@ class PhotosManager: NSObject {
     static let photoStoredNotificationName = Notification.Name("VoipChalleng-Notification.photoStored")
     static let thumbImgSavedNotificationName = Notification.Name("VoipChalleng-Notification.imageSaved")
     
-    var photos: [NSManagedObject] = []
+    var photos: [NSManagedObject] = [] {
+        didSet{
+            self.photos.sort(by: { (p1, p2) -> Bool in
+                
+                let id1 = p1.value(forKey: "id") as! Int
+                let albumId1 = p1.value(forKey: "albumId") as! Int
+                
+                let id2 = p2.value(forKey: "id") as! Int
+                let albumId2 = p2.value(forKey: "albumId") as! Int
+                
+               if albumId1 == albumId2 {
+                  return id1 < id2
+               }
+               return albumId1 < albumId2
+            })
+        }
+    }
     
     let urlPhotos: String = "https://jsonplaceholder.typicode.com/photos"
     
