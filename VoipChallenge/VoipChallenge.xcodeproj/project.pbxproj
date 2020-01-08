@@ -16,6 +16,7 @@
 		A4F7DDEB23C4BFE2002D2950 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7DDEA23C4BFE2002D2950 /* PhotosTableViewController.swift */; };
 		A4F7DDED23C4C143002D2950 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7DDEC23C4C143002D2950 /* PhotoDetailViewController.swift */; };
 		A4F7DDEF23C4C60C002D2950 /* PhotosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F7DDEE23C4C60C002D2950 /* PhotosManager.swift */; };
+		A4F9030C23C5DCCB0069BAEC /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9030B23C5DCCB0069BAEC /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A4F7DDEA23C4BFE2002D2950 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		A4F7DDEC23C4C143002D2950 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		A4F7DDEE23C4C60C002D2950 /* PhotosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosManager.swift; sourceTree = "<group>"; };
+		A4F9030B23C5DCCB0069BAEC /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		A4F7DDE523C4BDFE002D2950 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4F9030B23C5DCCB0069BAEC /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F9030C23C5DCCB0069BAEC /* Photo.swift in Sources */,
 				A4F7DDED23C4C143002D2950 /* PhotoDetailViewController.swift in Sources */,
 				A4F7DDE923C4BEA6002D2950 /* CustomTableViewCell.swift in Sources */,
 				A4F7DDEB23C4BFE2002D2950 /* PhotosTableViewController.swift in Sources */,

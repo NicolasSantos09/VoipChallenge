@@ -27,7 +27,7 @@ class PhotosTableViewController: UIViewController {
         
         self.navigationItem.title = "PhotosList"
         
-        photoManager.save(name: "vajnvkanvknvkjand", id: Int32(1), albumId: Int32(2))
+        NotificationCenter.default.addObserver(self, selector: #selector(PhotosTableViewController.photoStoreNotificationReceived(_:)), name: PhotosManager.photoStoredNotificationName, object: nil)
         
     }
     
@@ -45,6 +45,14 @@ class PhotosTableViewController: UIViewController {
         photosTableView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
         photosTableView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
+    
+// MARK: - Notifications
+
+    @objc private func photoStoreNotificationReceived(_ notification: Notification) {
+        DispatchQueue.main.async {
+            self.photosTableView.reloadData()
+        }
+    }
 
 }
 
@@ -61,6 +69,10 @@ extension PhotosTableViewController: UITableViewDelegate{
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    
 }
 
 extension PhotosTableViewController: UITableViewDataSource{
@@ -75,15 +87,10 @@ extension PhotosTableViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! CustomTableViewCell
         
-//        cell.textLabel!.text = photo.value(forKeyPath: "title") as? String
         cell.photo = photo
         
         return cell
         
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
     }
     
 }

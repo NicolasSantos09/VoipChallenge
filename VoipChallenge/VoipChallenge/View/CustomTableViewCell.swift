@@ -38,15 +38,15 @@ class CustomTableViewCell: UITableViewCell {
     let containerView:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true // this will make sure its children do not go out of the boundary
+        view.clipsToBounds = true
         return view
     }()
     
     let thumbnailImageView:UIImageView = {
         let img = UIImageView()
-        img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
-        img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
-        img.layer.cornerRadius = 35
+        img.image = UIImage(named: "1")
+        img.contentMode = .scaleAspectFill
+        img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
         return img
     }()
@@ -63,7 +63,6 @@ class CustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor =  .black
-//        label.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +73,6 @@ class CustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor =  .black
-//        label.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,8 +91,8 @@ class CustomTableViewCell: UITableViewCell {
         
         thumbnailImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         thumbnailImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
-        thumbnailImageView.widthAnchor.constraint(equalToConstant:60).isActive = true
-        thumbnailImageView.heightAnchor.constraint(equalToConstant:60).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalToConstant:(thumbnailImageView.image?.size.width)!).isActive = true
+        thumbnailImageView.heightAnchor.constraint(equalToConstant:(thumbnailImageView.image?.size.height)!).isActive = true
         
         containerView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         containerView.leadingAnchor.constraint(equalTo:self.thumbnailImageView.trailingAnchor, constant:10).isActive = true
