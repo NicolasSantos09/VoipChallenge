@@ -3,11 +3,12 @@
     <entity name="PhotoCore" representedClassName="PhotoCore" syncable="YES" codeGenerationType="class">
         <attribute name="albumId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="thumbnailImg" optional="YES" attributeType="Binary"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PhotoCore" positionX="-54" positionY="27" width="128" height="118"/>
+        <element name="PhotoCore" positionX="-54" positionY="27" width="128" height="133"/>
     </elements>
 </model>

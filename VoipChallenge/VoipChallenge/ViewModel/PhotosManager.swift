@@ -13,6 +13,7 @@ import UIKit
 class PhotosManager: NSObject {
     
     static let photoStoredNotificationName = Notification.Name("VoipChalleng-Notification.photoStored")
+    static let thumbImgSavedNotificationName = Notification.Name("VoipChalleng-Notification.imageSaved")
     
     var photos: [NSManagedObject] = []
     
@@ -20,16 +21,17 @@ class PhotosManager: NSObject {
     
     override init() {
         super.init()
-//        self.saveOnCoreData(id: 1, albumId: 2, title: "Title test element", url: "https://cnakjsncks.com", thumbnailUrl: "https://cnakjsncks.com")
         
-//        fetchPhoto(ofIndex: 1)
+        for index in 1...100{
+            fetchPhoto(ofIndex: index)
+        }
         
     }
     
     /**
     Use this method to save new photo on CoreData
     */
-    func saveOnCoreData(id: Int, albumId: Int, title: String, url: String, thumbnailUrl : String) {
+    private func saveOnCoreData(id: Int, albumId: Int, title: String, url: String, thumbnailUrl : String) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -48,6 +50,8 @@ class PhotosManager: NSObject {
         photo.setValue(url, forKeyPath: "url")
         photo.setValue(thumbnailUrl, forKeyPath: "thumbnailUrl")
         
+        self.fetchImage(of: photo, with: "thumbnailUrl")
+        
         // 4
         do {
             try managedContext.save()
@@ -60,9 +64,18 @@ class PhotosManager: NSObject {
         }
     }
     
+    private func save(this image: UIImage, on objectCore: NSManagedObject){
+        
+        guard let imageData = image.pngData() else { return }
+        
+        objectCore.setValue(imageData, forKey: "thumbnailImg")
+        
+        NotificationCenter.default.post(name: PhotosManager.thumbImgSavedNotificationName, object: self)
+
+        
+    }
     
-    
-    func fetchPhoto(ofIndex index: Int){
+    private func fetchPhoto(ofIndex index: Int){
         
         guard let url = URL(string: urlPhotos+"/\(index)") else {
           return
@@ -101,11 +114,35 @@ class PhotosManager: NSObject {
                 
                 
             } catch  {
-                print("error trying to convert data to JSON")
                 return
             }
         }
         
         task.resume()
     }
+    
+    private func fetchImage(of objectCore: NSManagedObject, with urlKey: String) {
+        guard let urlString = objectCore.value(forKey: urlKey) as? String else {
+            return
+        }
+        let urlThumb = URL(string: urlString)
+        
+        guard let url = urlThumb else {
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            guard let data = data, error == nil else {
+                return
+            }
+            if let image = UIImage(data: data) {
+                
+                self.save(this: image, on: objectCore)
+                
+            }
+        }
+
+        task.resume()
+    }
+    
 }

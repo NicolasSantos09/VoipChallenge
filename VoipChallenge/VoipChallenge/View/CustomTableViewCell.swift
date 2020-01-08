@@ -15,10 +15,6 @@ class CustomTableViewCell: UITableViewCell {
         didSet {
             guard let photoDetail = photo else {return}
             
-//            if let thumbnailImage = photoDetail.value(forKey: "albumId") as? String {
-//                countryImageView.image = UIImage(named: albumId)
-//            }
-            
             if let title = photoDetail.value(forKey: "title") as? String {
                 titleLabel.text = title
             }
@@ -114,6 +110,23 @@ class CustomTableViewCell: UITableViewCell {
         albumIdLabel.bottomAnchor.constraint(equalTo:self.containerView.bottomAnchor).isActive = true
         albumIdLabel.trailingAnchor.constraint(equalTo:self.containerView.trailingAnchor).isActive = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(CustomTableViewCell.imageSavedNotificationReceived(_:)), name: PhotosManager.thumbImgSavedNotificationName, object: nil)
+        
+    }
+    
+    // MARK: - Notifications
+
+    @objc private func imageSavedNotificationReceived(_ notification: Notification) {
+        DispatchQueue.main.async {
+            
+            guard let data = self.photo?.value(forKey: "thumbnailImg") as? Data else { return }
+            
+            guard let image = UIImage(data: data) else { return }
+            
+            self.thumbnailImageView.image = image
+            
+        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {

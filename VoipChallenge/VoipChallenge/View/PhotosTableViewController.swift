@@ -52,6 +52,7 @@ class PhotosTableViewController: UIViewController {
         DispatchQueue.main.async {
             self.photosTableView.reloadData()
         }
+        
     }
 
 }

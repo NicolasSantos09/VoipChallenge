@@ -24,10 +24,10 @@ class PhotoDetailViewController: UIViewController {
         
         self.view.addSubview(imageView)
         
-        imageView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant:16).isActive = true
-        
-        imageView.topAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.topAnchor, constant:16).isActive = true
-        imageView.bottomAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.bottomAnchor, constant:16).isActive = true
+//        imageView.leadingAnchor.constraint(equalTo:self.view.leadingAnchor, constant:16).isActive = true
+//        
+//        imageView.topAnchor.constraint(greaterThanOrEqualTo:self.view.safeAreaLayoutGuide.topAnchor, constant:16).isActive = true
+//        imageView.bottomAnchor.constraint(greaterThanOrEqualTo:self.view.safeAreaLayoutGuide.bottomAnchor, constant:16).isActive = true
         
         imageView.centerXAnchor.constraint(equalTo:self.view!.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo:self.view!.centerYAnchor).isActive = true
